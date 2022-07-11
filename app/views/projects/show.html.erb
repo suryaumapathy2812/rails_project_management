@@ -1,0 +1,80 @@
+<div class="">
+
+ <div class="mb-10">
+   <p class=""> Project name </p>
+   <h1> <%= @project.name %> </h1>
+ </div>
+
+
+  <div class="grid grid-cols-3 gap-4">
+
+
+      <div>
+        <div>
+          <h2> Repositories </h2>
+
+        </div>
+        <% if !(@project.repository.nil?) %>
+          <%= render partial: "repository/repo", locals: { repos: [@project.repository]} %>
+
+        <%  else %>
+        
+          <div class="px-4 py-8 sm:px-0">
+            <div class="border-4 border-dashed border-gray-200 rounded-lg h-40 flex">
+              <label for="repository-modal" class="m-auto btn modal-button">Create repository</label>
+            </div>
+          </div>
+
+        <%  end %>
+
+      </div>
+
+
+      <div>
+        <div>
+          <h2> Sites </h2>
+
+        </div>
+        
+        <% if !(@project.site.nil?) %>
+          <%= render partial: "sites/site", locals: { sites: [@project.site]} %>
+
+        <% else %>
+
+          <div class="px-4 py-8 sm:px-0">
+            <div class="border-4 border-dashed border-gray-200 rounded-lg h-40 flex">
+              <label for="site-modal" class="m-auto btn modal-button" <%= "disabled" if @project.repository.nil? %> >Create Sites</label>
+            </div>
+          </div>
+
+        <%  end %>
+
+      </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="repository-modal" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+  <%= render partial: "repository/form", locals: { :project_id => @project.id ,:repository => @repository} %>
+</div>
+
+
+<% if !(@project.repository.nil?) %>
+
+    <!-- Put this part before </body> tag -->
+    <input type="checkbox" id="site-modal" class="modal-toggle" />
+    <div class="modal">
+      <%= render partial: "sites/form", locals: { :project_id => @project.id, :site => @site} %>
+    </div>
+
+<% end %>

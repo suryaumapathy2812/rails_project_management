@@ -1,0 +1,2 @@
+css:ruby bin/rails tailwindcss:watch
+server:ruby bin/rails server -p 3000

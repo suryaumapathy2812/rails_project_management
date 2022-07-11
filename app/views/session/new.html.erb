@@ -1,0 +1,14 @@
+<div>
+  <%= form_with(model: @user, method: :POST, url: '/session/create') do |f| %>
+    <h1> Login </h1>
+    <div>
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :password, "Password" %>
+      <%= f.text_field :password %>
+    </div>
+    <%= f.submit "Login", disable_with: 'Logging In...' %>
+  <% end %>
+</div>

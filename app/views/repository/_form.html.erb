@@ -1,0 +1,23 @@
+<%= form_with(model: repository  ,method: :POST, url: "/projects/#{project_id}/repository/create" ) do |f|  %>
+<div class="modal-box">
+
+    <h3 class="font-bold text-lg mb-4">Create repository</h3>
+
+    <div class="mb-2">
+      <%= f.hidden_field :project_id, value:project_id %>
+    </div>
+
+    <div class="mb-2">
+      <%= f.label :name, "Repository Name" %>
+      <%= f.text_field :name, class:"input input-bordered  w-full max-w-xs" %>
+    </div>
+
+  <div class="mt-4">
+    <label for="repository-modal" class="btn">close</label>
+    <%= f.submit "Save changes", class:"btn btn-primary"%>
+  </div>
+
+</div>
+
+<% end %>
+

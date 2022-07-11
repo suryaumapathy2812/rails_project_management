@@ -1,0 +1,51 @@
+<div>
+
+  <div class="flex justify-between items-center">
+    <h1> Projects </h1>
+    <label for="my-modal" class="btn btn-md btn-primary modal-button">Create Project</label>
+  </div>
+
+
+
+  <table class="table w-full ">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Action</td>
+      </tr>
+    </thead>
+    <tbody>
+      <%# <% if !@projects.nil? %>
+      <% @projects.each do |project| %>
+        <tr>
+          <td>
+            <%= project.id %>
+          </td>
+          <td>
+            <%= project.name %>
+          </td>
+          <td>
+            <%= link_to "View", "/projects/#{project.id}", class:"btn" %>
+          </td>
+        </tr>
+      <% end %>
+      <%# <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal -->
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Create Project</h3>
+
+    <!--    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>-->
+    <%= render "projects/form" %>
+
+  </div>
+</div>
+
+

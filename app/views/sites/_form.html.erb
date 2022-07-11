@@ -1,0 +1,32 @@
+<div class="modal-box w-50">
+  <%= form_with(model: site , method: :POST, url: "/projects/#{project_id}/sites/create" ) do |f|  %>
+
+    <h3 class="font-bold text-lg mb-4">Create repository</h3>
+
+    <div class="mb-2">
+      <%= f.hidden_field :project_id, value: project_id %>
+    </div>
+
+    <div class="mb-2">
+      <%= f.hidden_field :provider_id, value: 3 %>
+    </div>
+
+    <div class="mb-2">
+      <%= f.label :name, "Site Name", class:"label" %>
+      <%= f.text_field :name, class:"input input-bordered  w-full" %>
+    </div>
+
+    <div class="mb-2">
+      <%= f.label :repo_path, "Repository", class:"label" %>
+      <%= f.select :repo_path, options_for_select([@repository].map { |repo| [repo.name, repo.path] }), {}, { class: "select select-bordered w-full" } %>
+    </div>
+
+    <div class="mt-4 flex gap-4">
+      <label for="site-modal" class="btn ml-auto">close</label>
+      <%= f.submit "Save changes", class:"btn btn-primary"%>
+    </div>
+
+  <% end %>
+</div>
+
+

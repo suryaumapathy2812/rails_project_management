@@ -1,0 +1,140 @@
+<div class="my-16">
+
+  <div>
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
+<!-- <p class="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p> -->
+        </div>
+      </div>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <%= form_with(model: @user, method: :PUT, url: "/users/update") do |f|  %>
+          <div class="shadow sm:rounded-md sm:overflow-hidden">
+            <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+
+              <div>
+                <%= f.label :first_name, "First Name" %>
+                <%= f.text_field :first_name, class:"input input-bordered w-full" %>
+              </div>
+
+              <div>
+                <%= f.label :last_name, "Last Name" %>
+                <%= f.text_field :last_name, class:"input input-bordered w-full" %>
+              </div>
+
+              <div>
+                <%= f.label :email, "Email Address" %>
+                <%= f.email_field :email, class:"input input-bordered w-full disabled", disabled: true %>
+              </div>
+
+              <div>
+                <%= f.label :password, "Password" %>
+                <%= f.password_field :password, class:"input input-bordered w-full" %>
+              </div>
+
+              <div>
+                <%= f.label :confirm_password, "Confirm Password" %>
+                <%= f.password_field :confirm_password, class:"input input-bordered w-full" %>
+              </div>
+
+            </div>
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <%= f.submit "Update",disable_with: 'Submiting...', class:"inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"%>
+            </div>
+          </div>
+        <% end  %>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden sm:block" aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </div>
+
+  <div class="mt-10 sm:mt-0">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Integration Token</h3>
+<!--          <p class="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>-->
+        </div>
+      </div>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="shadow overflow-hidden sm:rounded-md">
+            <div class="px-4 py-5 bg-white sm:p-6">
+
+              <div class="mb-8">
+                <%= form_with(model: @github_secret,as: :secret, method: :POST, url: "/secrets/create") do |f| %>
+
+                  <div>
+                    <input type="hidden" name="secret[provider_id]" value="1" >
+                  </div>
+
+                  <div class="form-control mb-4">
+                    <%= f.label :token, "Github Token", class:"label"  %>
+                    <%= f.password_field :token, class:"input input-bordered w-full",  placeholder:"***************************************************************************" %>
+                  </div>
+
+                  <div>
+                    <%= f.submit "Save", disable_with: 'Saving...', class:"btn btn-primary" %>
+                  </div>
+
+              <% end %>
+              </div>
+
+
+              <div class="mb-8">
+                <%= form_with(model: @netlify_secret, as: :secret, method: :POST, url: "/secrets/create") do |f| %>
+
+                  <div>
+                    <input type="hidden" name="secret[provider_id]" value="3" >
+                  </div>
+
+                  <div class="form-control mb-4">
+                    <%= f.label :token, "Netlify Token", class:"label"  %>
+                    <%= f.password_field :token, class:"input input-bordered w-full" , placeholder:"***************************************************************************" %>
+                  </div>
+
+                  <div>
+                    <%= f.submit "Save", disable_with: 'Saving...', class:"btn btn-primary" %>
+                  </div>
+
+                <% end %>
+              </div>
+
+
+              <div class="mb-8">
+                <%= form_with(model: @sonar_cloud_secret,as: :secret, method: :POST, url: "/secrets/create") do |f| %>
+
+                  <div>
+                  <input type="hidden" name="secret[provider_id]" value="2" >
+                  </div>
+
+                  <div class="form-control mb-4">
+                    <%= f.label :client_id, "Client ID", class:"label" %>
+                    <%= f.text_field :client_id, class:"input input-bordered w-full" %>
+                  </div>
+
+                  <div class="form-control mb-4">
+                    <%= f.label :client_secret, "Client Secret",class:"label"  %>
+                    <%= f.password_field :client_secret, class:"input input-bordered w-full", placeholder:"***************************************************************************" %>
+                  </div>
+
+                  <div>
+                    <%= f.submit "Save", disable_with: 'Saving...', class:"btn btn-primary" %>
+                  </div>
+
+              <% end %>
+              </div>
+
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

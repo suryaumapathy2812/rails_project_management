@@ -1,0 +1,28 @@
+<div>
+
+  <%= form_with(model: @user, method: :POST, url: 'users/create') do |f| %>
+    <%# <%= render 'layouts/error_messages', f: f.object %> %>
+
+    <h1> Register </h1>
+
+    <div>
+      <%= f.label :first_name, "First Name" %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div>
+      <%= f.label :last_name, "Last Name" %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :password, "Password" %>
+      <%= f.text_field :password %>
+    </div>
+
+    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+
+  <% end %>
+</div>
